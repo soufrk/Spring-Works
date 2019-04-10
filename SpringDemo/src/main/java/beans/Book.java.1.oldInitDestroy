@@ -1,0 +1,36 @@
+package beans;
+
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.DisposableBean;
+
+/**
+ * Demonstaration of old ways of implementing bean lifecycle events.
+ */
+public class Book implements InitializingBean, DisposableBean {
+	
+	private String name;
+	
+	public Book(){
+		System.out.println("Contructor of Book bean invoked");
+	}
+    
+	@Override 
+	public void afterPropertiesSet() {
+		System.out.println("After properties set method");
+	}
+	
+	@Override
+	public void destroy() {
+		System.out.println("destroy() called in Book bean");
+	}
+	
+	public void setName(String name) {
+		System.out.println("Setter of name in Book invoked");
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+}

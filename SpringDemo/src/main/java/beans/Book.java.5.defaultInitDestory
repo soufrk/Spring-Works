@@ -1,0 +1,39 @@
+package beans;
+
+/**
+ * Demonstration of global-init & global-destroy
+ */
+public class Book {
+	
+	private String name;
+    
+	public Book(){
+		System.out.println("----- Contructor of Book bean invoked -----");
+	}
+	
+	public void customInitMethod() {
+		System.out.println("------- customInitMethod() called on Book ------");
+	}
+	
+	public void defaultInitMethod() {
+		System.out.println("------- defaultInitMethod() called on Book ------");
+	}
+	
+	public void customDestroyMethod() {
+		System.out.println("------- customDestroyMethod() called on Book ------ ");
+	}
+	
+	public void defaultDestroyMethod() {
+		System.out.println("------- defaultDestroyMethod() called on Book ------ ");
+	}
+	
+	public void setName(String name) {
+		System.out.println("------ Setter of name in Book invoked --------");
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+}

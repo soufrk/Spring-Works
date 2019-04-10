@@ -1,0 +1,5 @@
+1. Write basic outline of a gradle build file for Java project.
+2. How do we modify it to run a Spring project ?
+3. What is a gradle plugin ? What does 'java' plugin provide ? What ways to write use of a plugin ?
+4. Gradle command to generate a empty Java Project structure.
+5.

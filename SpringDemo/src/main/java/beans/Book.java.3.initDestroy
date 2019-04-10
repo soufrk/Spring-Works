@@ -1,0 +1,32 @@
+package beans;
+
+/**
+ * Demonstrating custom-init & custom-destroy implementation in 
+ * spring-bean-lifecycle.
+ */
+public class Book {
+	
+	private String name;
+    
+	public Book(){
+		System.out.println("----- Contructor of Book bean invoked -----");
+	}
+	
+	public void customInitMethod() {
+		System.out.println("------- customInitMethod() in Book ------");
+	}
+	
+	public void customDestroyMethod() {
+		System.out.println("------- customDestroyMethod() called on Book ------ ");
+	}
+	
+	public void setName(String name) {
+		System.out.println("------ Setter of name in Book invoked --------");
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+}

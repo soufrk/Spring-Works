@@ -1,0 +1,2 @@
+* How to create inherited bean definition in Spring ?
+* What is Spring-Bean definition template ?

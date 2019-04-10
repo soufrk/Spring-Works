@@ -1,0 +1,8 @@
+1. What is a BeanFactory ?
+Order of invocation in InitializingBean & DisposableBean ?
+Disadvantage of InitializingBean & DisposableBean approach to implement lifecycle events ?
+What is the signature of method to be overriden in BeanFactoryAware interface ?
+Can custom-init methods be declared to throw Exception ?
+How to define global init & destroy methods ?
+
+What happens if bean definition is inherited ?

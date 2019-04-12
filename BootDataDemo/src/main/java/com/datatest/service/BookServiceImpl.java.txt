@@ -1,0 +1,19 @@
+package com.datatest.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.datatest.entity.Book;
+import com.datatest.repository.BookRepository;
+
+public class BookServiceImpl implements BookService {
+	
+	@Autowired
+	private BookRepository bookRepository;
+	
+	public Book addBook(Book b) {
+		Book result = null;
+		
+		return result;
+	}
+
+}

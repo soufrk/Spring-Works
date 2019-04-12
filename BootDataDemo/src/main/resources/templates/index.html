@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+   $.getJSON("http://localhost:8080/books", function(result){
+      $.each(result, function(key,value) {
+         $("#booksJson").append(value.id+" "+value.name+" ");
+      }); 
+   });
+});
+</script>
+
+<html>
+   <head>
+      <meta charset = "ISO-8859-1" />
+      <link href = "css/styles.css" rel = "stylesheet"/>
+      <title>Spring Boot Application</title>
+   </head>
+   <body>
+      <h4>Welcome to Thymeleaf Spring Boot web application</h4>
+	  Books
+	  <div id = "booksJson"> </div>
+   </body>
+</html>

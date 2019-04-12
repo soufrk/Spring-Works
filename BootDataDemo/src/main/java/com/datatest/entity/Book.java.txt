@@ -1,0 +1,11 @@
+package com.datatest.entity;
+
+import java.persistence.Entity;
+
+@Entity
+public class Book {
+	
+    @id
+	private Long id;
+	
+}

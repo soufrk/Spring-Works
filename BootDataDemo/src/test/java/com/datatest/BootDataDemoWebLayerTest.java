@@ -15,8 +15,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
+import com.datatest.controller.RestfulController;
+
+/**
+ * Tests only web-layer of the application. Note, no @Service
+ * or @Component beans would be available by default. If test
+ * depends on such beans they need to be mocked. 
+ * 
+ * @author soufrk
+ *
+ */
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@WebMvcTest(RestfulController.class)
 public class BootDataDemoWebLayerTest {
 	
 	@Autowired
@@ -26,6 +36,12 @@ public class BootDataDemoWebLayerTest {
 	public void testRootAlive() throws Exception {
 		mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
 		    .andExpect(content().string("Hello World !!"));
+	}
+	
+	@Test
+	public void testGetDouble() throws Exception {
+		mockMvc.perform(get("/double/4")).andDo(print()).andExpect(status().isOk())
+		    .andExpect(content().string("8"));
 	}
 	
 }

@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import com.datatest.repository.WorkerRepository;
 import com.datatest.entity.Worker;
 
-@Service
+//@Service
+@Component
 public class WorkerServiceImpl implements WorkerService {
 
 	@Autowired

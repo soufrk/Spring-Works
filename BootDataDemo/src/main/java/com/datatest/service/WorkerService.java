@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.datatest.entity.Worker;
 
-//@Service
+@Service
 public interface WorkerService {
 	
 	Worker getWorker(long workerId);

@@ -23,9 +23,14 @@ public class WorkerServiceImpl implements WorkerService {
 	
 	@Override
 	public Worker getWorker(long workerId){
-		Optional<Worker> w = repository.findById(workerId);
+		Optional<Worker> w = getWorkerOptional(workerId);
 		// fill with optional logic
 		return null;
+	}
+	
+	@Override
+	public Optional<Worker> getWorkerOptional(long workerId){
+		return repository.findById(workerId);
 	}
 	
 }

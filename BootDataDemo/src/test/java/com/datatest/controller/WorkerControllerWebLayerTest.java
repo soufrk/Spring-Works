@@ -1,6 +1,7 @@
 package com.datatest.controller;
 
 import java.sql.Date;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,7 +67,8 @@ public class WorkerControllerWebLayerTest {
 		        .andExpect(content().string());
 	}*/
 	
-	@Test
+	/** First implementation */
+	/*@Test
 	public void getWorkerTestPositive() throws Exception {
 		Long id = 1234l;
 		Worker w = new Worker();
@@ -80,15 +82,84 @@ public class WorkerControllerWebLayerTest {
 		
 		when(service.getWorker(1234)).thenReturn(w);
 		mockMvc.perform(get("/worker/" + id)).andDo(print()).andExpect(status().isOk())
+		        .andExpect(content().string(
+				"{\"id\":1234,\"firstName\":\"AAA\",\"lastName\":\"BBB\",\"salary\":4500.0,\"doj\":\"2019-04-16\",\"department\":\"ABCD\"}"));
+	}*/
+	
+	/** Updated with JSON conversion */
+	/*@Test
+	public void getWorkerTestPositive() throws Exception {
+		Long id = 1234l;
+		Worker w = new Worker();
+		w.setId(id);
+		w.setFirstName("AAA");
+		w.setLastName("BBB");
+		w.setSalary(4500.00);
+		w.setDoj(new Date(System.currentTimeMillis()));
+		w.setDepartment("ABCD");
+		ObjectMapper mapper = new ObjectMapper();
+		when(service.getWorker(1234)).thenReturn(w);
+		mockMvc.perform(get("/worker/" + id)).andDo(print()).andExpect(status().isOk())
 		        .andExpect(content().string(mapper.writeValueAsString(w)
 				//"{\"id\":1234,\"firstName\":\"AAA\",\"lastName\":\"BBB\",\"salary\":4500.0,\"doj\":\"2019-04-16\",\"department\":\"ABCD\"}"));
 				));
+	}*/
+	
+	/** Updated with using injected JSON mapper */
+	/*@Test
+	public void getWorkerTestPositive() throws Exception {
+		Long id = 1234l;
+		Worker w = new Worker();
+		w.setId(id);
+		w.setFirstName("AAA");
+		w.setLastName("BBB");
+		w.setSalary(4500.00);
+		w.setDoj(new Date(System.currentTimeMillis()));
+		w.setDepartment("ABCD");
+		when(service.getWorker(1234)).thenReturn(w);
+		mockMvc.perform(get("/worker/" + id)).andDo(print()).andExpect(status().isOk())
+		        .andExpect(content().string(mapper.writeValueAsString(w)
+				));
+	}*/
+	
+	/** Mocking new optional method of service class. */
+	@Test
+	public void getWorkerTestPositive() throws Exception {
+		Long id = 1234l;
+		Worker w = new Worker();
+		w.setId(id);
+		w.setFirstName("AAA");
+		w.setLastName("BBB");
+		w.setSalary(4500.00);
+		w.setDoj(new Date(System.currentTimeMillis()));
+		w.setDepartment("ABCD");
+		when(service.getWorkerOptional(1234)).thenReturn(Optional.of(w));
+		mockMvc.perform(get("/worker/" + id)).andDo(print()).andExpect(status().isOk())
+		        .andExpect(content().string(mapper.writeValueAsString(w)
+				));
 	}
 	
-	@Test
+	/** Old method implementation */
+	/*@Test
 	public void getWorkerTestNegative() throws Exception {
 		when(service.getWorker(1234)).thenReturn(null);
 		mockMvc.perform(get("/worker/1234")).andDo(print()).andExpect(status().isNoContent());
+	}*/
+	
+	/** Updated behaviour - Expect HTTP 404 when no results found. */
+	/*@Test
+	public void getWorkerTestNegative() throws Exception {
+		Worker w = null;
+		when(service.getWorker(1234)).thenReturn(null);
+		mockMvc.perform(get("/worker/1234")).andDo(print()).andExpect(status().isNotFound());
+	}*/
+	
+	/** Updated with new optional method in Service class. */
+	@Test
+	public void getWorkerTestNegative() throws Exception {
+		Worker w = null;
+		when(service.getWorkerOptional(1234)).thenReturn(Optional.ofNullable(null));
+		mockMvc.perform(get("/worker/1234")).andDo(print()).andExpect(status().isNotFound());
 	}
 
 }
